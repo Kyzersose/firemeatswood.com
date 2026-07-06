@@ -59,40 +59,6 @@
     els.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- catering form -> mailto (no backend needed) ---------- */
-  var form = document.getElementById("catering-form");
-  if (form) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var d = new FormData(form);
-      var name = (d.get("name") || "").toString().trim();
-      var contact = (d.get("contact") || "").toString().trim();
-      var date = (d.get("date") || "").toString().trim();
-      var guests = (d.get("guests") || "").toString().trim();
-      var details = (d.get("details") || "").toString().trim();
-
-      var lines = [
-        "Catering request via firemeatswood.com",
-        "-----------------------------------",
-        "Name: " + name,
-        "Best contact: " + contact,
-        "Event date: " + (date || "TBD"),
-        "Headcount: " + (guests || "TBD"),
-        "",
-        "Details:",
-        details || "(none provided)"
-      ];
-
-      var subject = "Catering Request" + (name ? " — " + name : "");
-      var mailto =
-        "mailto:firemeatswood@gmail.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(lines.join("\n"));
-
-      window.location.href = mailto;
-    });
-  }
-
   /* ---------- hero embers (lightweight canvas) ---------- */
   var canvas = document.querySelector(".hero__embers");
   if (!canvas || prefersReducedMotion) return;
